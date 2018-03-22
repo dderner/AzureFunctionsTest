@@ -11,6 +11,12 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
     string jsonContent = await req.Content.ReadAsStringAsync();
     dynamic data = JsonConvert.DeserializeObject(jsonContent);
 
+    if (data.first == "dillon" || data.last == "derner") {
+        return req.CreateResponse(HttpStatusCode.OK, new {
+            greeting = $"Hello Cool Dude - Adding this change to test that I correctly switched github users in Visual Studio!"
+        });
+    }
+
     if (data.first == null || data.last == null) {
         return req.CreateResponse(HttpStatusCode.BadRequest, new {
             error = "Please pass first/last properties in the input object"
