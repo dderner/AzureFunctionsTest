@@ -16,6 +16,7 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
             error = "Please pass first/last properties in the input object"
         });
     }
+
     return req.CreateResponse(HttpStatusCode.OK, new {
         greeting = $"Hello {data.first} {data.last}!"
     });
